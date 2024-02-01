@@ -6,7 +6,6 @@ public class Main {
 
     public static BufferedReader br;
     public static BufferedWriter bw;
-    public static StringBuilder sb;
 
     public static int [][] cheatSHIT = {
             {2, 3, 5, 7},
@@ -19,21 +18,15 @@ public class Main {
             {23399339, 29399999, 37337999, 59393339, 73939133},
     };
 
-    public static void solution() throws Exception {
-        for(int n : cheatSHIT[N-1]){
-            bw.write(sb.append(n).append("\n").toString());
-            sb.setLength(0);
-        }
-    }
-
     public static void main(String[] args) throws Exception {
         br = new BufferedReader(new InputStreamReader(System.in));
         bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        sb = new StringBuilder();
 
         N = Integer.parseInt(br.readLine());
 
-        solution();
+        for(int n : cheatSHIT[N-1]){
+            bw.write(n + "\n");
+        }
 
         bw.flush();
         bw.close();
