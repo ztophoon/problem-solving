@@ -13,19 +13,26 @@ public class Solution {
     public static StringTokenizer st;
 
     public static int solution() {
-        int sum, max = 0;
+        int sum, subCnt, max = 0;
 
-        for(int r = 0; r < N; r++){
-            for(int c = 0; c < N; c++){
-                if(r < M - 1 | c < M - 1){
+        for(int r = 1; r <= N; r++){
+            for(int c = 1; c <= N; c++){
+                if(r < M | c < M){
                     continue;
                 }
 
-                sum = 0;
-                for(int rr = r - M + 1; rr <= r; rr++){
-                    for(int cc = c - M + 1; cc <= c; cc++){
-                        sum += flyes[rr][cc];
-                    }
+                subCnt = 0;
+                sum = flyes[r][c];
+                if (r - M > 0) {
+                    sum -= flyes[r - M][c];
+                    subCnt++;
+                }
+                if (c - M > 0) {
+                    sum -= flyes[r][c - M];
+                    subCnt++;
+                }
+                if (subCnt == 2){
+                    sum += flyes[r - M][c - M];
                 }
 
                 max = max < sum ? sum : max;
@@ -46,11 +53,11 @@ public class Solution {
             N = Integer.parseInt(st.nextToken());
             M = Integer.parseInt(st.nextToken());
 
-            flyes = new int [N][N];
-            for(int r = 0; r < N; r++){
+            flyes = new int [N + 1][N + 1];
+            for(int r = 1; r <= N; r++){
                 st = new StringTokenizer(br.readLine());
-                for(int c = 0; c < N; c++){
-                    flyes[r][c] = Integer.parseInt(st.nextToken());
+                for(int c = 1; c <= N; c++){
+                    flyes[r][c] = flyes[r][c-1] + flyes[r-1][c] - flyes[r-1][c-1] + Integer.parseInt(st.nextToken());
                 }
             }
 
