@@ -4,7 +4,7 @@ import java.util.*;
 public class Main {
 
     public static int N, K;
-    public static Queue<Integer> q = new ArrayDeque<>();
+    public static List<Integer> li = new LinkedList<>();
 
     public static StringTokenizer st;
     public static StringBuilder sb = new StringBuilder();
@@ -12,16 +12,16 @@ public class Main {
     public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static void solution(){
+
         for(int i = 1; i <= N; i++){
-            q.add(i);
+            li.add(i);
         }
 
-        while(!q.isEmpty()){
-            for(int i = 0; i < K-1; i++){
-                q.add(q.poll());
-            }
-            sb.append(q.poll());
-            if(!q.isEmpty()){
+        int idx = 0;
+        while(li.size() > 0){
+            idx = (idx + (K - 1)) % li.size();
+            sb.append(li.remove(idx));
+            if(li.size() > 0) {
                 sb.append(", ");
             }
         }
