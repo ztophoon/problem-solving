@@ -6,22 +6,19 @@ public class Main {
     public static int N, L;
     public static int [] arr;
 
-    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));;
-    public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
     public static StringTokenizer st;
+    public static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    public static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
     public static int solution() throws IOException {
-        Arrays.sort(arr);
-
         int now = L;
-        for(int i = 0; i < N; i++){
-            if(arr[i] <= now){
+        for(int n : arr){
+            if(n <= now){
                 now++;
             } else {
                 break;
             }
         }
-
         return now;
     }
 
@@ -36,8 +33,8 @@ public class Main {
         for(int i = 0; i < N; i++){
             arr[i] = Integer.parseInt(st.nextToken());
         }
+        Arrays.sort(arr);
 
-        bw.write(solution() + "");
-        bw.close();
+        System.out.println(solution());
     }
 }
